@@ -248,6 +248,16 @@ footer{background:#050506;padding:30px 0;border-top:1px solid var(--ligne);font-
               <label class="chip"><input type="checkbox" value="objets"><span>Objets / gongs</span></label>
             </div>
           </div>
+          <div class="field" id="attrs-field">
+            <span class="legend">Marquage des formes</span>
+            <div class="chips" id="attrs">
+              <label class="chip"><input type="checkbox" value="vide" checked><span>Vides</span></label>
+              <label class="chip"><input type="checkbox" value="chiffre" checked><span>Chiffres 1-5</span></label>
+              <label class="chip"><input type="checkbox" value="lettre" checked><span>Lettres A-E</span></label>
+              <label class="chip"><input type="checkbox" value="couleur" checked><span>Couleurs</span></label>
+            </div>
+            <p class="hint">Ne cochez que les cibles que vous avez réellement sur le pas de tir.</p>
+          </div>
           <div class="row">
             <div class="field">
               <label class="legend" for="len">Longueur</label>
@@ -368,10 +378,11 @@ function hash(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCod
 function rng(seed){let a=hash(seed);return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 function newCode(){const A="ACDEFHJKLMNPRTUVWXY3479";let s="";for(let i=0;i<3;i++)s+=A[Math.floor(Math.random()*A.length)];s+="-";for(let i=0;i<3;i++)s+=A[Math.floor(Math.random()*A.length)];return s}
 
-const SILHOUETTE=["tête","torse","ventre","épaule droite","épaule gauche","cuisse"];
-const SHAPES=["cercle","carré","triangle","losange"];
-const COLORS=["rouge","bleu","vert","jaune","noir"];
-const MARKS=["n°1","n°2","n°3","n°4","marqué A","marqué B","marqué C","vide"];
+const SILHOUETTE=["tête","torse","ventre"];
+const SHAPES=["cercle","carré","triangle","rectangle","losange"];
+const COULEURS=["vert","jaune","rouge","violet","bleu"];
+const CHIFFRES=["1","2","3","4","5"];
+const LETTRES=["A","B","C","D","E"];
 const OBJETS=["canette","gong métal","popper","cible carton 14×14","bouteille plastique"];
 const MOVES=["transition couloir voisin","pas latéral droite","pas latéral gauche","retour ligne arrière","contournement obstacle"];
 
@@ -379,20 +390,24 @@ const pick=(r,a)=>a[Math.floor(r()*a.length)];
 const chance=(r,p)=>r()<p;
 const checked=id=>[...document.querySelectorAll("#"+id+" input:checked")].map(i=>i.value);
 
-function target(r,fam){
+function target(r,fam,attrs){
   const f=pick(r,fam);
   if(f==="silhouette") return pick(r,SILHOUETTE);
   if(f==="objets")     return pick(r,OBJETS);
   const shape=pick(r,SHAPES);
-  return chance(r,.55) ? shape+" "+pick(r,COLORS) : shape+" "+pick(r,MARKS);
+  const a=attrs.length ? pick(r,attrs) : "vide";
+  if(a==="couleur") return shape+" "+pick(r,COULEURS);
+  if(a==="chiffre") return shape+" n°"+pick(r,CHIFFRES);
+  if(a==="lettre")  return shape+" marqué "+pick(r,LETTRES);
+  return shape+" vide";
 }
 
 function build(cfg){
-  const r=rng([cfg.code,cfg.len,cfg.maxShots,cfg.families,cfg.manips,cfg.positions,cfg.hands].join("|"));
+  const r=rng([cfg.code,cfg.len,cfg.maxShots,cfg.families,cfg.attrs,cfg.manips,cfg.positions,cfg.hands].join("|"));
   const steps=[]; let shots=0, lastPos=null, lastHand=null;
   for(let i=0;i<cfg.len;i++){
     const n=1+Math.floor(r()*cfg.maxShots);
-    const t=target(r,cfg.families);
+    const t=target(r,cfg.families,cfg.attrs);
     const bits=[];
     if(cfg.positions.length){
       const p=pick(r,cfg.positions);
@@ -444,12 +459,17 @@ function runGen(){
     code:(document.getElementById("seed").value.trim().toUpperCase())||newCode(),
     len:+document.getElementById("len").value,
     maxShots:+document.getElementById("maxShots").value,
-    families:checked("families"), manips:checked("manips"),
+    families:checked("families"), attrs:checked("attrs"), manips:checked("manips"),
     positions:checked("positions"), hands:checked("hands")
   };
   if(!cfg.families.length){
     document.getElementById("card").innerHTML =
       '<div class="empty"><strong>Aucune cible sélectionnée</strong>Cochez au moins un type de cible pour lancer le tirage.</div>';
+    return;
+  }
+  if(cfg.families.indexOf("formes")>-1 && !cfg.attrs.length){
+    document.getElementById("card").innerHTML =
+      '<div class="empty"><strong>Aucun marquage sélectionné</strong>Cochez au moins un marquage de formes, ou décochez les formes géométriques.</div>';
     return;
   }
   document.getElementById("seed").value=cfg.code;
