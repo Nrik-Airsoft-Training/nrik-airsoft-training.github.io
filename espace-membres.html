@@ -74,6 +74,30 @@ input:focus,select:focus{border-color:var(--orange);outline:none}
 .panel-head h2{font-size:clamp(30px,5vw,44px)}
 .panel-head p{margin:12px 0 0}
 
+/* sous-onglets (partie 1) */
+.subtabs{display:flex;gap:2px;background:var(--ligne);margin-bottom:28px;flex-wrap:wrap}
+.subtab{flex:1;min-width:150px;background:var(--acier);border:0;border-bottom:3px solid transparent;color:var(--argent-fonce);
+  font-family:"Saira Condensed",sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:.05em;
+  font-size:15px;padding:14px 12px;cursor:pointer}
+.subtab[aria-selected=true]{color:#fff;border-bottom-color:var(--orange);background:var(--charbon)}
+.subpanel{display:none}
+.subpanel.active{display:block}
+
+/* accordéon des programmes */
+.programs{display:flex;flex-direction:column;gap:2px;background:var(--ligne)}
+details.program{background:var(--charbon)}
+details.program>summary{list-style:none;cursor:pointer;padding:22px 24px;display:flex;align-items:center;
+  justify-content:space-between;gap:16px;font-family:"Saira Condensed",sans-serif;font-weight:800;
+  text-transform:uppercase;color:#fff;font-size:19px}
+details.program>summary::-webkit-details-marker{display:none}
+details.program>summary::after{content:"+";color:var(--orange);font-size:26px;line-height:1;flex-shrink:0}
+details.program[open]>summary::after{content:"–"}
+details.program .program-body{padding:0 24px 28px}
+details.program .program-lead{color:var(--argent-fonce);font-size:15.5px;margin:0 0 22px;max-width:70ch}
+.program-sheets{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;background:var(--ligne);border:1px solid var(--ligne)}
+.program-sheets .sheet{background:var(--acier)}
+.program-solo{background:var(--acier);padding:24px;max-width:640px}
+
 /* fiches */
 .sheets{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;background:var(--ligne)}
 .sheet{background:var(--charbon);padding:24px;display:flex;flex-direction:column}
@@ -194,345 +218,380 @@ footer{background:#050506;padding:30px 0;border-top:1px solid var(--ligne);font-
       <div class="panel-head">
         <p class="kicker">Partie 1</p>
         <h2>Fiches d'exercices &amp; programmes</h2>
-        <p>8 fiches d'exercices, chacune avec sa cible dédiée à imprimer avant de venir. Suivez les consignes dans l'ordre indiqué.</p>
+        <p>Trois catégories : des programmes complets à dérouler, les scénarios favoris déjà prêts, et les fiches d'exercices avec leur cible à imprimer.</p>
       </div>
-      <div class="sheets">
-        <article class="sheet">
-          <span class="lvl">Feuille n°1 · 10 billes</span>
-          <h3>Reprise en main</h3>
-          <p>Faire 5 tirs au centre puis vérifier, corriger et refaire 5 tirs — ainsi de suite. Réglage de la visée.</p>
-          <div class="files"><a class="btn ghost sm" href="cibles/1%20-%20Reprise%20en%20main.png" download="1 - Reprise en main.png">Télécharger la cible</a></div>
-        </article>
-        <article class="sheet">
-          <span class="lvl">Feuille n°2 · 32 billes</span>
-          <h3>Travail de précision</h3>
-          <ul>
-            <li>1ère ligne : 5 tirs dans chacun des 3 cercles (temps + précision).</li>
-            <li>2e ligne : 1 tir à gauche puis 1 à droite, refaire 1 à gauche et 1 à droite.</li>
-            <li>3e ligne : 1 tir à gauche, 1 à droite, 3 fois de suite (rapidité + précision).</li>
-            <li>4e ligne : 1 tir dans chaque cercle, dans l'ordre de son choix.</li>
-          </ul>
-          <div class="files"><a class="btn ghost sm" href="cibles/2%20-%20Travail%20de%20Précision.png" download="2 - Travail de Précision.png">Télécharger la cible</a></div>
-        </article>
-        <article class="sheet">
-          <span class="lvl">Feuille n°3 · 27 billes</span>
-          <h3>Travail du reset</h3>
-          <ul>
-            <li>1 tir puis 2 tirs à la suite dans le cercle du haut (autant de fois que désiré).</li>
-            <li>2 tirs dans chacun des cercles du bas (sentir la gâchette).</li>
-            <li>2 tirs à gauche, puis 2 à droite, puis 2 à gauche (reprise de visée + rapidité).</li>
-          </ul>
-          <div class="files"><a class="btn ghost sm" href="cibles/3%20-%20Travail%20du%20Reset.png" download="3 - Travail du Reset.png">Télécharger la cible</a></div>
-        </article>
-        <article class="sheet">
-          <span class="lvl">Feuille n°4 · 16 billes</span>
-          <h3>Prise de visée</h3>
-          <ul>
-            <li>Aligner sa réplique vers la lettre de son choix (A, B, C, D…), mains jointes puis mains ouvertes, lentement puis en accélérant.</li>
-            <li>Une fois l'exercice assimilé, faire 1 tir dans chaque cercle (pensez à vous enregistrer).</li>
-          </ul>
-          <div class="files"><a class="btn ghost sm" href="cibles/4%20-%20Prise%20de%20visée.png" download="4 - Prise de visée.png">Télécharger la cible</a></div>
-        </article>
-        <article class="sheet">
-          <span class="lvl">Feuille n°5</span>
-          <h3>Suite de chiffres</h3>
-          <p>Faire 1 tir rapide et précis dans chaque chiffre (pensez à vous enregistrer).</p>
-          <div class="files"><a class="btn ghost sm" href="cibles/5%20-%20Suite%20de%20chiffre.png" download="5 - Suite de chiffre.png">Télécharger la cible</a></div>
-        </article>
-        <article class="sheet">
-          <span class="lvl">Feuille n°6 · 15 billes</span>
-          <h3>Tir en aller-retour</h3>
-          <ul>
-            <li>Parcours de rapidité : 2 tirs dans les gros cercles, de haut en bas puis en remontant (2 haut, 2 milieu, 2 bas, 2 milieu, 2 haut).</li>
-            <li>1 tir dans les petits cercles, de haut en bas puis en remontant (1 haut, 1 milieu, 1 bas, 1 milieu, 1 haut).</li>
-          </ul>
-          <div class="files"><a class="btn ghost sm" href="cibles/6%20-%20Tir%20en%20aller-retour.png" download="6 - Tir en aller-retour.png">Télécharger la cible</a></div>
-        </article>
-        <article class="sheet">
-          <span class="lvl">Feuille n°7 · 10 billes</span>
-          <h3>Changement de main</h3>
-          <p>Faire 1 tir à gauche de la main gauche, puis 1 tir à droite de la main droite — ainsi de suite.</p>
-          <div class="files"><a class="btn ghost sm" href="cibles/7%20-%20Changement%20de%20main.png" download="7 - Changement de main.png">Télécharger la cible</a></div>
-        </article>
-        <article class="sheet">
-          <span class="lvl">Feuille n°8</span>
-          <h3>Travail d'analyse et de précision</h3>
-          <p>Tirer sur les parties blanches, de plus en plus vite (en haut à gauche, en bas au milieu, au milieu à gauche, etc. — pensez à vous enregistrer).</p>
-          <div class="files"><a class="btn ghost sm" href="cibles/8%20-%20Travail%20d'analyse%20et%20de%20précision.png" download="8 - Travail d'analyse et de précision.png">Télécharger la cible</a></div>
-        </article>
-        <article class="sheet">
-          <span class="lvl">Manipulation · Arme de poing (Colt 1911)</span>
-          <h3>Changement de chargeur</h3>
-          <p class="sub">Préparation</p>
-          <ul>
-            <li>Ranger ses chargeurs toujours au même endroit et dans le même sens, pour faciliter la saisie.</li>
-            <li>Ne jamais jeter ses chargeurs au sol : risque de saletés et de détérioration de la réplique.</li>
-          </ul>
-          <p class="sub">Chargeur vide</p>
-          <ul>
-            <li>Se signaler : « Jack chargeur » ou « Jack rechargement ».</li>
-            <li>Analyser la situation pour choisir entre se mettre à couvert ou faire un changement rapide.</li>
-          </ul>
-          <p class="sub">À couvert</p>
-          <ul>
-            <li>Lever sa réplique au niveau des yeux pour garder une vue d'ensemble du terrain et de sa réplique.</li>
-            <li>Éjecter le chargeur vide.</li>
-            <li>Saisir le chargeur plein en gardant le chargeur vide en main.</li>
-            <li>Insérer le chargeur plein.</li>
-            <li>Ranger le chargeur vide à la place du plein.</li>
-            <li>Annoncer son retour : « Jack ok ».</li>
-          </ul>
-          <p class="sub">Rechargement rapide</p>
-          <ul>
-            <li>Éjecter le chargeur vide en saisissant le chargeur plein, puis l'insérer le plus vite possible, en s'annonçant « chargeur » puis « ok ».</li>
-          </ul>
-          <p class="sub">Ou</p>
-          <ul>
-            <li>Saisir sa réplique longue pour continuer à tirer en se mettant à couvert.</li>
-          </ul>
-        </article>
-        <article class="sheet">
-          <span class="lvl">Manipulation · Réplique longue (M4)</span>
-          <h3>Changement de chargeur</h3>
-          <p class="sub">Préparation</p>
-          <ul>
-            <li>Ranger ses chargeurs toujours au même endroit et dans le même sens, pour faciliter la saisie.</li>
-            <li>Ne jamais jeter ses chargeurs au sol : risque de saletés et de détérioration de la réplique.</li>
-          </ul>
-          <p class="sub">Chargeur vide ou changement tactique</p>
-          <ul>
-            <li>Se signaler : « Jack chargeur » ou « Jack rechargement ».</li>
-            <li>Analyser la situation pour choisir entre se mettre à couvert ou faire un changement rapide.</li>
-          </ul>
-          <p class="sub">À couvert</p>
-          <ul>
-            <li>Lever sa réplique au niveau des yeux pour garder une vue d'ensemble du terrain et de sa réplique.</li>
-            <li>Prendre le chargeur plein dans le gilet tactique.</li>
-            <li>Le coller en L contre le chargeur vide.</li>
-            <li>Éjecter le chargeur vide en le gardant dans la main.</li>
-            <li>Faire un mouvement de poignet pour engager le chargeur plein.</li>
-            <li>Insérer le chargeur plein.</li>
-            <li>Ranger le chargeur vide à la place du plein.</li>
-            <li>Annoncer son retour : « Jack ok ».</li>
-          </ul>
-          <p class="sub">Rechargement rapide</p>
-          <ul>
-            <li>Éjecter le chargeur vide en saisissant le chargeur plein, puis l'insérer le plus vite possible, en s'annonçant « chargeur » puis « ok ».</li>
-          </ul>
-          <p class="sub">Ou</p>
-          <ul>
-            <li>Saisir sa réplique de poing pour continuer à tirer en se mettant à couvert.</li>
-          </ul>
-        </article>
-        <article class="sheet">
-          <span class="lvl">Programme · 45 à 60 min</span>
-          <h3>4 cibles / zones — tête, torse, ventre</h3>
-          <p>Améliorer la visée, la précision et l'adaptation à des cibles placées à des hauteurs et distances différentes (usage sportif).</p>
-          <p class="sub">Installation des cibles</p>
-          <ul>
-            <li>4 cibles identiques, de même couleur.</li>
-            <li>Distances échelonnées, du plus proche au plus éloigné.</li>
-            <li>Chaque cible est placée à une hauteur différente.</li>
-            <li>Chaque cible comporte 3 zones : A (tête, partie haute), B (torse, partie centrale), C (ventre, partie basse).</li>
-          </ul>
-          <p class="sub">1) Échauffement — tir à sec (10 min)</p>
-          <ul>
-            <li>Viser successivement : cible 1 → zone B, cible 2 → zone A, cible 3 → zone C, cible 4 → zone B.</li>
-            <li>Maintien de la visée : 15 secondes par cible.</li>
-            <li>2 cycles complets.</li>
-          </ul>
-          <p class="sub">2) Visée contrôlée — tir réel (15 min)</p>
-          <ul>
-            <li>Ordre imposé : cible la plus proche → zone B, cible suivante → zone A, cible suivante → zone C, cible la plus éloignée → zone B.</li>
-            <li>1 bille par visée, 3 cycles (12 tirs).</li>
-          </ul>
-          <p class="sub">3) Distance progressive (10–15 min)</p>
-          <ul>
-            <li>Du plus proche au plus éloigné, zone libre (A, B ou C).</li>
-            <li>2 tirs par cible, 3 séries (24 tirs).</li>
-          </ul>
-          <p class="sub">4) Coordination visée / décision (10 min)</p>
-          <ul>
-            <li>Annoncer mentalement la zone (A, B ou C) avant le tir.</li>
-            <li>Vérifier les impacts après la série. 12 tirs.</li>
-          </ul>
-          <p class="sub">5) Précision finale (5–10 min)</p>
-          <ul>
-            <li>Une seule zone choisie, sur la cible la plus éloignée.</li>
-            <li>5 tirs.</li>
-          </ul>
-          <p class="sub">Débrief</p>
-          <ul>
-            <li>Quelle hauteur est la plus difficile ?</li>
-            <li>Quelle zone (A/B/C) pose problème ?</li>
-            <li>Stabilité et qualité de la visée.</li>
-          </ul>
-        </article>
-        <article class="sheet">
-          <span class="lvl">Programme · Changement de plateforme</span>
-          <h3>Configuration de référence</h3>
-          <p class="sub">Cibles (toutes devant, non alignées)</p>
-          <ul>
-            <li>Rouge – 5 m : centre, proche.</li>
-            <li>Bleu – 10 m : gauche.</li>
-            <li>Vert – 15 m : droite.</li>
-            <li>Jaune – 20 m : excentrée (droite ou gauche).</li>
-          </ul>
-          <p class="sub">Répliques</p>
-          <ul>
-            <li>Réplique A : arme en main au départ.</li>
-            <li>Réplique B : posée sur table / support, culasse ou sélecteur en sécurité.</li>
-          </ul>
-          <p class="sub">Règle absolue</p>
-          <ul>
-            <li>Jamais les deux répliques en main en même temps.</li>
-          </ul>
-        </article>
-        <article class="sheet">
-          <span class="lvl">Exercice 1 · Mode standard</span>
-          <h3>Montée en distance + changement de plateforme</h3>
-          <p class="sub">Objectif précis</p>
-          <p>Être capable de changer de réplique sans perdre le calme, juste avant un tir exigeant.</p>
-          <p class="sub">Réglage</p>
-          <ul>
-            <li>Mode : Standard.</li>
-            <li>Réplique A en main au départ.</li>
-          </ul>
-          <p class="sub">Séquence exacte</p>
-          <ol>
-            <li>Rouge – 5 m → 1 tir (Réplique A).</li>
-            <li>Bleu – 10 m → 1 tir (Réplique A).</li>
-            <li>Vert – 15 m → 1 tir (Réplique A).</li>
-          </ol>
-          <p class="sub">Transition réplique (procédure stricte)</p>
-          <ol>
-            <li>Arme A orientée sécurité.</li>
-            <li>Posée complètement.</li>
-            <li>Prise en main de la Réplique B.</li>
-            <li>Vérification visuelle rapide.</li>
-            <li>Respiration.</li>
-            <li>Jaune – 20 m → 1 tir (Réplique B).</li>
-          </ol>
-          <p class="sub">Point clé</p>
-          <ul>
-            <li>Le tir à 20 m ne doit pas être précipité.</li>
-            <li>Accepter un micro-temps d'adaptation.</li>
-          </ul>
-          <p>Travail visé : changement moteur + précision.</p>
-        </article>
-        <article class="sheet">
-          <span class="lvl">Exercice 2 · Mode aléatoire</span>
-          <h3>Décision + changement imprévu de réplique</h3>
-          <p class="sub">Objectif précis</p>
-          <p>Changer de réplique sans savoir quelle distance arrive ensuite.</p>
-          <p class="sub">Réglage</p>
-          <ul>
-            <li>Mode : Aléatoire.</li>
-            <li>Réplique A en main.</li>
-          </ul>
-          <p class="sub">Déroulé exact</p>
-          <ol>
-            <li>Une cible s'allume → 1 tir (Réplique A).</li>
-            <li>Une seconde cible s'allume → 1 tir (Réplique A).</li>
-          </ol>
-          <p>Annonce mentale : « CHANGEMENT ».</p>
-          <p class="sub">Transition</p>
-          <ul>
-            <li>Poser la Réplique A.</li>
-            <li>Prendre la Réplique B.</li>
-            <li>Arme basse.</li>
-            <li>Regard devant.</li>
-          </ul>
-          <ol start="3">
-            <li>Prochaine cible activée → 1 tir (Réplique B).</li>
-          </ol>
-          <p class="sub">Règle de priorité</p>
-          <ul>
-            <li>Si Jaune – 20 m s'allume après le changement : tir posé, jamais réflexe.</li>
-          </ul>
-          <p class="sub">Erreurs critiques</p>
-          <ul>
-            <li>Changer trop vite.</li>
-            <li>Tirer avant d'avoir retrouvé une prise correcte.</li>
-          </ul>
-          <p>Travail visé : discipline sous incertitude.</p>
-        </article>
-        <article class="sheet">
-          <span class="lvl">Exercice 3 · Mode standard</span>
-          <h3>Proche ↔ lointain avec rupture de plateforme</h3>
-          <p class="sub">Objectif précis</p>
-          <p>Empêcher le transfert de mauvaises habitudes d'une réplique à l'autre.</p>
-          <p class="sub">Séquence immuable</p>
-          <ol>
-            <li>Rouge – 5 m → 1 tir (Réplique A).</li>
-          </ol>
-          <p>Changement de réplique immédiat.</p>
-          <ol start="2">
-            <li>Jaune – 20 m → 1 tir (Réplique B).</li>
-            <li>Bleu – 10 m → 1 tir (Réplique B).</li>
-          </ol>
-          <p>Retour Réplique A.</p>
-          <ol start="4">
-            <li>Vert – 15 m → 1 tir (Réplique A).</li>
-          </ol>
-          <p class="sub">Point clé</p>
-          <ul>
-            <li>Chaque changement impose une reconstruction de la visée.</li>
-            <li>Ne jamais « porter » la vitesse du pistolet sur la longue.</li>
-          </ul>
-          <p>Travail visé : adaptation moteur rapide.</p>
-        </article>
-        <article class="sheet">
-          <span class="lvl">Exercice 4 · Mode implacable</span>
-          <h3>Pression continue + alternance de répliques</h3>
-          <p class="sub">Objectif précis</p>
-          <p>Rester lucide quand les cibles se relèvent vite, que les répliques alternent et que la fatigue s'installe.</p>
-          <p class="sub">Réglage</p>
-          <ul>
-            <li>Mode : Implacable.</li>
-            <li>Alternance obligatoire.</li>
-          </ul>
-          <p class="sub">Règle d'alternance</p>
-          <ul>
-            <li>1 cible = 1 réplique.</li>
-            <li>Changer de réplique à chaque cible validée.</li>
-          </ul>
-          <p class="sub">Cycle recommandé</p>
-          <ol>
-            <li>10 m (A)</li>
-            <li>15 m (B)</li>
-            <li>20 m (A)</li>
-            <li>5 m (B)</li>
-            <li>20 m (A)</li>
-          </ol>
-          <p class="sub">Objectif</p>
-          <ul>
-            <li>16 à 20 touches.</li>
-            <li>Aucun tir précipité.</li>
-            <li>Aucun mélange de gestes.</li>
-          </ul>
-          <p>Travail visé : fatigue mentale + rigueur.</p>
-        </article>
-        <article class="sheet">
-          <span class="lvl">Programme · Séance type (40 min)</span>
-          <h3>Séance type &amp; indicateurs de progression</h3>
-          <p class="sub">Séance type (40 min)</p>
-          <ul>
-            <li>Standard + changement de plateforme : 10 min.</li>
-            <li>Aléatoire + changement imprévu : 10 min.</li>
-            <li>Proche ↔ lointain alterné : 8 min.</li>
-            <li>Implacable alterné : 10 à 12 min.</li>
-          </ul>
-          <p class="sub">Indicateurs de progression</p>
-          <ul>
-            <li>Changement de réplique fluide et sûr.</li>
-            <li>Aucun tir « sale » juste après transition.</li>
-            <li>Tir à 20 m toujours maîtrisé.</li>
-            <li>Sensation de calme même sous pression.</li>
-          </ul>
-        </article>
+
+      <div class="subtabs" role="tablist">
+        <button class="subtab" role="tab" id="stab-prog" aria-selected="true" aria-controls="sp-prog">Programmes</button>
+        <button class="subtab" role="tab" id="stab-scenar" aria-selected="false" aria-controls="sp-scenar">Scénarios favoris</button>
+        <button class="subtab" role="tab" id="stab-fichexo" aria-selected="false" aria-controls="sp-fichexo">Fiches d'exercices</button>
       </div>
-      <p class="hint" style="margin-top:20px">Les liens pointent vers un dossier <span class="mono">/cibles/</span> à la racine du dépôt GitHub, contenant les images de cibles.</p>
+
+      <!-- Sous-catégorie : PROGRAMMES -->
+      <div class="subpanel active" id="sp-prog" role="tabpanel" aria-labelledby="stab-prog">
+        <div class="programs">
+          <details class="program" open>
+            <summary>Programme 1 — 4 cibles / zones (tête, torse, ventre)</summary>
+            <div class="program-body">
+              <p class="program-lead">Améliorer la visée, la précision et l'adaptation à des cibles placées à des hauteurs et distances différentes (usage sportif). Durée : 45 à 60 minutes.</p>
+              <div class="program-solo">
+                <p class="sub">Installation des cibles</p>
+                <ul>
+                  <li>4 cibles identiques, de même couleur.</li>
+                  <li>Distances échelonnées, du plus proche au plus éloigné.</li>
+                  <li>Chaque cible est placée à une hauteur différente.</li>
+                  <li>Chaque cible comporte 3 zones : A (tête, partie haute), B (torse, partie centrale), C (ventre, partie basse).</li>
+                </ul>
+                <p class="sub">1) Échauffement — tir à sec (10 min)</p>
+                <ul>
+                  <li>Viser successivement : cible 1 → zone B, cible 2 → zone A, cible 3 → zone C, cible 4 → zone B.</li>
+                  <li>Maintien de la visée : 15 secondes par cible.</li>
+                  <li>2 cycles complets.</li>
+                </ul>
+                <p class="sub">2) Visée contrôlée — tir réel (15 min)</p>
+                <ul>
+                  <li>Ordre imposé : cible la plus proche → zone B, cible suivante → zone A, cible suivante → zone C, cible la plus éloignée → zone B.</li>
+                  <li>1 bille par visée, 3 cycles (12 tirs).</li>
+                </ul>
+                <p class="sub">3) Distance progressive (10–15 min)</p>
+                <ul>
+                  <li>Du plus proche au plus éloigné, zone libre (A, B ou C).</li>
+                  <li>2 tirs par cible, 3 séries (24 tirs).</li>
+                </ul>
+                <p class="sub">4) Coordination visée / décision (10 min)</p>
+                <ul>
+                  <li>Annoncer mentalement la zone (A, B ou C) avant le tir.</li>
+                  <li>Vérifier les impacts après la série. 12 tirs.</li>
+                </ul>
+                <p class="sub">5) Précision finale (5–10 min)</p>
+                <ul>
+                  <li>Une seule zone choisie, sur la cible la plus éloignée.</li>
+                  <li>5 tirs.</li>
+                </ul>
+                <p class="sub">Débrief</p>
+                <ul style="margin-bottom:0">
+                  <li>Quelle hauteur est la plus difficile ?</li>
+                  <li>Quelle zone (A/B/C) pose problème ?</li>
+                  <li>Stabilité et qualité de la visée.</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+
+          <details class="program">
+            <summary>Programme 2 — Changement de plateforme</summary>
+            <div class="program-body">
+              <p class="program-lead">4 exercices progressifs pour apprendre à changer de réplique (arme de poing ↔ réplique longue) sans perdre le calme ni la précision. Séance type : 40 minutes.</p>
+              <div class="program-sheets">
+                <article class="sheet">
+                  <span class="lvl">Configuration de référence</span>
+                  <h3>Cibles &amp; répliques</h3>
+                  <p class="sub">Cibles (toutes devant, non alignées)</p>
+                  <ul>
+                    <li>Rouge – 5 m : centre, proche.</li>
+                    <li>Bleu – 10 m : gauche.</li>
+                    <li>Vert – 15 m : droite.</li>
+                    <li>Jaune – 20 m : excentrée (droite ou gauche).</li>
+                  </ul>
+                  <p class="sub">Répliques</p>
+                  <ul>
+                    <li>Réplique A : arme en main au départ.</li>
+                    <li>Réplique B : posée sur table / support, culasse ou sélecteur en sécurité.</li>
+                  </ul>
+                  <p class="sub">Règle absolue</p>
+                  <ul>
+                    <li>Jamais les deux répliques en main en même temps.</li>
+                  </ul>
+                </article>
+                <article class="sheet">
+                  <span class="lvl">Exercice 1 · Mode standard</span>
+                  <h3>Montée en distance + changement de plateforme</h3>
+                  <p class="sub">Objectif précis</p>
+                  <p>Être capable de changer de réplique sans perdre le calme, juste avant un tir exigeant.</p>
+                  <p class="sub">Réglage</p>
+                  <ul>
+                    <li>Mode : Standard.</li>
+                    <li>Réplique A en main au départ.</li>
+                  </ul>
+                  <p class="sub">Séquence exacte</p>
+                  <ol>
+                    <li>Rouge – 5 m → 1 tir (Réplique A).</li>
+                    <li>Bleu – 10 m → 1 tir (Réplique A).</li>
+                    <li>Vert – 15 m → 1 tir (Réplique A).</li>
+                  </ol>
+                  <p class="sub">Transition réplique (procédure stricte)</p>
+                  <ol>
+                    <li>Arme A orientée sécurité.</li>
+                    <li>Posée complètement.</li>
+                    <li>Prise en main de la Réplique B.</li>
+                    <li>Vérification visuelle rapide.</li>
+                    <li>Respiration.</li>
+                    <li>Jaune – 20 m → 1 tir (Réplique B).</li>
+                  </ol>
+                  <p class="sub">Point clé</p>
+                  <ul>
+                    <li>Le tir à 20 m ne doit pas être précipité.</li>
+                    <li>Accepter un micro-temps d'adaptation.</li>
+                  </ul>
+                  <p>Travail visé : changement moteur + précision.</p>
+                </article>
+                <article class="sheet">
+                  <span class="lvl">Exercice 2 · Mode aléatoire</span>
+                  <h3>Décision + changement imprévu de réplique</h3>
+                  <p class="sub">Objectif précis</p>
+                  <p>Changer de réplique sans savoir quelle distance arrive ensuite.</p>
+                  <p class="sub">Réglage</p>
+                  <ul>
+                    <li>Mode : Aléatoire.</li>
+                    <li>Réplique A en main.</li>
+                  </ul>
+                  <p class="sub">Déroulé exact</p>
+                  <ol>
+                    <li>Une cible s'allume → 1 tir (Réplique A).</li>
+                    <li>Une seconde cible s'allume → 1 tir (Réplique A).</li>
+                  </ol>
+                  <p>Annonce mentale : « CHANGEMENT ».</p>
+                  <p class="sub">Transition</p>
+                  <ul>
+                    <li>Poser la Réplique A.</li>
+                    <li>Prendre la Réplique B.</li>
+                    <li>Arme basse.</li>
+                    <li>Regard devant.</li>
+                  </ul>
+                  <ol start="3">
+                    <li>Prochaine cible activée → 1 tir (Réplique B).</li>
+                  </ol>
+                  <p class="sub">Règle de priorité</p>
+                  <ul>
+                    <li>Si Jaune – 20 m s'allume après le changement : tir posé, jamais réflexe.</li>
+                  </ul>
+                  <p class="sub">Erreurs critiques</p>
+                  <ul>
+                    <li>Changer trop vite.</li>
+                    <li>Tirer avant d'avoir retrouvé une prise correcte.</li>
+                  </ul>
+                  <p>Travail visé : discipline sous incertitude.</p>
+                </article>
+                <article class="sheet">
+                  <span class="lvl">Exercice 3 · Mode standard</span>
+                  <h3>Proche ↔ lointain avec rupture de plateforme</h3>
+                  <p class="sub">Objectif précis</p>
+                  <p>Empêcher le transfert de mauvaises habitudes d'une réplique à l'autre.</p>
+                  <p class="sub">Séquence immuable</p>
+                  <ol>
+                    <li>Rouge – 5 m → 1 tir (Réplique A).</li>
+                  </ol>
+                  <p>Changement de réplique immédiat.</p>
+                  <ol start="2">
+                    <li>Jaune – 20 m → 1 tir (Réplique B).</li>
+                    <li>Bleu – 10 m → 1 tir (Réplique B).</li>
+                  </ol>
+                  <p>Retour Réplique A.</p>
+                  <ol start="4">
+                    <li>Vert – 15 m → 1 tir (Réplique A).</li>
+                  </ol>
+                  <p class="sub">Point clé</p>
+                  <ul>
+                    <li>Chaque changement impose une reconstruction de la visée.</li>
+                    <li>Ne jamais « porter » la vitesse du pistolet sur la longue.</li>
+                  </ul>
+                  <p>Travail visé : adaptation moteur rapide.</p>
+                </article>
+                <article class="sheet">
+                  <span class="lvl">Exercice 4 · Mode implacable</span>
+                  <h3>Pression continue + alternance de répliques</h3>
+                  <p class="sub">Objectif précis</p>
+                  <p>Rester lucide quand les cibles se relèvent vite, que les répliques alternent et que la fatigue s'installe.</p>
+                  <p class="sub">Réglage</p>
+                  <ul>
+                    <li>Mode : Implacable.</li>
+                    <li>Alternance obligatoire.</li>
+                  </ul>
+                  <p class="sub">Règle d'alternance</p>
+                  <ul>
+                    <li>1 cible = 1 réplique.</li>
+                    <li>Changer de réplique à chaque cible validée.</li>
+                  </ul>
+                  <p class="sub">Cycle recommandé</p>
+                  <ol>
+                    <li>10 m (A)</li>
+                    <li>15 m (B)</li>
+                    <li>20 m (A)</li>
+                    <li>5 m (B)</li>
+                    <li>20 m (A)</li>
+                  </ol>
+                  <p class="sub">Objectif</p>
+                  <ul>
+                    <li>16 à 20 touches.</li>
+                    <li>Aucun tir précipité.</li>
+                    <li>Aucun mélange de gestes.</li>
+                  </ul>
+                  <p>Travail visé : fatigue mentale + rigueur.</p>
+                </article>
+                <article class="sheet">
+                  <span class="lvl">Séance type (40 min)</span>
+                  <h3>Enchaînement &amp; indicateurs de progression</h3>
+                  <p class="sub">Séance type (40 min)</p>
+                  <ul>
+                    <li>Standard + changement de plateforme : 10 min.</li>
+                    <li>Aléatoire + changement imprévu : 10 min.</li>
+                    <li>Proche ↔ lointain alterné : 8 min.</li>
+                    <li>Implacable alterné : 10 à 12 min.</li>
+                  </ul>
+                  <p class="sub">Indicateurs de progression</p>
+                  <ul style="margin-bottom:0">
+                    <li>Changement de réplique fluide et sûr.</li>
+                    <li>Aucun tir « sale » juste après transition.</li>
+                    <li>Tir à 20 m toujours maîtrisé.</li>
+                    <li>Sensation de calme même sous pression.</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- Sous-catégorie : SCÉNARIOS FAVORIS -->
+      <div class="subpanel" id="sp-scenar" role="tabpanel" aria-labelledby="stab-scenar">
+        <div class="sheets">
+          <article class="sheet">
+            <span class="lvl">Manipulation · Arme de poing (Colt 1911)</span>
+            <h3>Changement de chargeur</h3>
+            <p class="sub">Préparation</p>
+            <ul>
+              <li>Ranger ses chargeurs toujours au même endroit et dans le même sens, pour faciliter la saisie.</li>
+              <li>Ne jamais jeter ses chargeurs au sol : risque de saletés et de détérioration de la réplique.</li>
+            </ul>
+            <p class="sub">Chargeur vide</p>
+            <ul>
+              <li>Se signaler : « Jack chargeur » ou « Jack rechargement ».</li>
+              <li>Analyser la situation pour choisir entre se mettre à couvert ou faire un changement rapide.</li>
+            </ul>
+            <p class="sub">À couvert</p>
+            <ul>
+              <li>Lever sa réplique au niveau des yeux pour garder une vue d'ensemble du terrain et de sa réplique.</li>
+              <li>Éjecter le chargeur vide.</li>
+              <li>Saisir le chargeur plein en gardant le chargeur vide en main.</li>
+              <li>Insérer le chargeur plein.</li>
+              <li>Ranger le chargeur vide à la place du plein.</li>
+              <li>Annoncer son retour : « Jack ok ».</li>
+            </ul>
+            <p class="sub">Rechargement rapide</p>
+            <ul>
+              <li>Éjecter le chargeur vide en saisissant le chargeur plein, puis l'insérer le plus vite possible, en s'annonçant « chargeur » puis « ok ».</li>
+            </ul>
+            <p class="sub">Ou</p>
+            <ul>
+              <li>Saisir sa réplique longue pour continuer à tirer en se mettant à couvert.</li>
+            </ul>
+          </article>
+          <article class="sheet">
+            <span class="lvl">Manipulation · Réplique longue (M4)</span>
+            <h3>Changement de chargeur</h3>
+            <p class="sub">Préparation</p>
+            <ul>
+              <li>Ranger ses chargeurs toujours au même endroit et dans le même sens, pour faciliter la saisie.</li>
+              <li>Ne jamais jeter ses chargeurs au sol : risque de saletés et de détérioration de la réplique.</li>
+            </ul>
+            <p class="sub">Chargeur vide ou changement tactique</p>
+            <ul>
+              <li>Se signaler : « Jack chargeur » ou « Jack rechargement ».</li>
+              <li>Analyser la situation pour choisir entre se mettre à couvert ou faire un changement rapide.</li>
+            </ul>
+            <p class="sub">À couvert</p>
+            <ul>
+              <li>Lever sa réplique au niveau des yeux pour garder une vue d'ensemble du terrain et de sa réplique.</li>
+              <li>Prendre le chargeur plein dans le gilet tactique.</li>
+              <li>Le coller en L contre le chargeur vide.</li>
+              <li>Éjecter le chargeur vide en le gardant dans la main.</li>
+              <li>Faire un mouvement de poignet pour engager le chargeur plein.</li>
+              <li>Insérer le chargeur plein.</li>
+              <li>Ranger le chargeur vide à la place du plein.</li>
+              <li>Annoncer son retour : « Jack ok ».</li>
+            </ul>
+            <p class="sub">Rechargement rapide</p>
+            <ul>
+              <li>Éjecter le chargeur vide en saisissant le chargeur plein, puis l'insérer le plus vite possible, en s'annonçant « chargeur » puis « ok ».</li>
+            </ul>
+            <p class="sub">Ou</p>
+            <ul>
+              <li>Saisir sa réplique de poing pour continuer à tirer en se mettant à couvert.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+
+      <!-- Sous-catégorie : FICHES D'EXERCICES -->
+      <div class="subpanel" id="sp-fichexo" role="tabpanel" aria-labelledby="stab-fichexo">
+        <p class="hint" style="margin-bottom:20px">8 fiches d'exercices, chacune avec sa cible dédiée à imprimer avant de venir.</p>
+        <div class="sheets">
+          <article class="sheet">
+            <span class="lvl">Feuille n°1 · 10 billes</span>
+            <h3>Reprise en main</h3>
+            <p>Faire 5 tirs au centre puis vérifier, corriger et refaire 5 tirs — ainsi de suite. Réglage de la visée.</p>
+            <div class="files"><a class="btn ghost sm" href="cibles/1%20-%20Reprise%20en%20main.png" download="1 - Reprise en main.png">Télécharger la cible</a></div>
+          </article>
+          <article class="sheet">
+            <span class="lvl">Feuille n°2 · 32 billes</span>
+            <h3>Travail de précision</h3>
+            <ul>
+              <li>1ère ligne : 5 tirs dans chacun des 3 cercles (temps + précision).</li>
+              <li>2e ligne : 1 tir à gauche puis 1 à droite, refaire 1 à gauche et 1 à droite.</li>
+              <li>3e ligne : 1 tir à gauche, 1 à droite, 3 fois de suite (rapidité + précision).</li>
+              <li>4e ligne : 1 tir dans chaque cercle, dans l'ordre de son choix.</li>
+            </ul>
+            <div class="files"><a class="btn ghost sm" href="cibles/2%20-%20Travail%20de%20Précision.png" download="2 - Travail de Précision.png">Télécharger la cible</a></div>
+          </article>
+          <article class="sheet">
+            <span class="lvl">Feuille n°3 · 27 billes</span>
+            <h3>Travail du reset</h3>
+            <ul>
+              <li>1 tir puis 2 tirs à la suite dans le cercle du haut (autant de fois que désiré).</li>
+              <li>2 tirs dans chacun des cercles du bas (sentir la gâchette).</li>
+              <li>2 tirs à gauche, puis 2 à droite, puis 2 à gauche (reprise de visée + rapidité).</li>
+            </ul>
+            <div class="files"><a class="btn ghost sm" href="cibles/3%20-%20Travail%20du%20Reset.png" download="3 - Travail du Reset.png">Télécharger la cible</a></div>
+          </article>
+          <article class="sheet">
+            <span class="lvl">Feuille n°4 · 16 billes</span>
+            <h3>Prise de visée</h3>
+            <ul>
+              <li>Aligner sa réplique vers la lettre de son choix (A, B, C, D…), mains jointes puis mains ouvertes, lentement puis en accélérant.</li>
+              <li>Une fois l'exercice assimilé, faire 1 tir dans chaque cercle (pensez à vous enregistrer).</li>
+            </ul>
+            <div class="files"><a class="btn ghost sm" href="cibles/4%20-%20Prise%20de%20visée.png" download="4 - Prise de visée.png">Télécharger la cible</a></div>
+          </article>
+          <article class="sheet">
+            <span class="lvl">Feuille n°5</span>
+            <h3>Suite de chiffres</h3>
+            <p>Faire 1 tir rapide et précis dans chaque chiffre (pensez à vous enregistrer).</p>
+            <div class="files"><a class="btn ghost sm" href="cibles/5%20-%20Suite%20de%20chiffre.png" download="5 - Suite de chiffre.png">Télécharger la cible</a></div>
+          </article>
+          <article class="sheet">
+            <span class="lvl">Feuille n°6 · 15 billes</span>
+            <h3>Tir en aller-retour</h3>
+            <ul>
+              <li>Parcours de rapidité : 2 tirs dans les gros cercles, de haut en bas puis en remontant (2 haut, 2 milieu, 2 bas, 2 milieu, 2 haut).</li>
+              <li>1 tir dans les petits cercles, de haut en bas puis en remontant (1 haut, 1 milieu, 1 bas, 1 milieu, 1 haut).</li>
+            </ul>
+            <div class="files"><a class="btn ghost sm" href="cibles/6%20-%20Tir%20en%20aller-retour.png" download="6 - Tir en aller-retour.png">Télécharger la cible</a></div>
+          </article>
+          <article class="sheet">
+            <span class="lvl">Feuille n°7 · 10 billes</span>
+            <h3>Changement de main</h3>
+            <p>Faire 1 tir à gauche de la main gauche, puis 1 tir à droite de la main droite — ainsi de suite.</p>
+            <div class="files"><a class="btn ghost sm" href="cibles/7%20-%20Changement%20de%20main.png" download="7 - Changement de main.png">Télécharger la cible</a></div>
+          </article>
+          <article class="sheet">
+            <span class="lvl">Feuille n°8</span>
+            <h3>Travail d'analyse et de précision</h3>
+            <p>Tirer sur les parties blanches, de plus en plus vite (en haut à gauche, en bas au milieu, au milieu à gauche, etc. — pensez à vous enregistrer).</p>
+            <div class="files"><a class="btn ghost sm" href="cibles/8%20-%20Travail%20d'analyse%20et%20de%20précision.png" download="8 - Travail d'analyse et de précision.png">Télécharger la cible</a></div>
+          </article>
+        </div>
+        <p class="hint" style="margin-top:20px">Les liens pointent vers un dossier <span class="mono">/cibles/</span> à la racine du dépôt GitHub, contenant les images de cibles.</p>
+      </div>
     </section>
 
     <!-- ---------- PARTIE 2 : GÉNÉRATEUR ---------- -->
@@ -669,6 +728,17 @@ const tabs = [["tab-fiches","p-fiches"],["tab-gen","p-gen"]];
 tabs.forEach(([t,p]) => {
   document.getElementById(t).addEventListener("click", () => {
     tabs.forEach(([tt,pp]) => {
+      const on = tt === t;
+      document.getElementById(tt).setAttribute("aria-selected", on);
+      document.getElementById(pp).classList.toggle("active", on);
+    });
+  });
+});
+
+const subtabs = [["stab-prog","sp-prog"],["stab-scenar","sp-scenar"],["stab-fichexo","sp-fichexo"]];
+subtabs.forEach(([t,p]) => {
+  document.getElementById(t).addEventListener("click", () => {
+    subtabs.forEach(([tt,pp]) => {
       const on = tt === t;
       document.getElementById(tt).setAttribute("aria-selected", on);
       document.getElementById(pp).classList.toggle("active", on);
